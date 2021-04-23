@@ -1,0 +1,48 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Emails index{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid">
+				<h4 class="mt-4">ADD EMAIL</h4>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">Email Addresses</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						<table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for email in emails %}
+            <tr>
+                <td>{{ email.email }}</td>
+                <td>
+                    <a class="btn btn-success"  href="{{ path('emails_show', {'id': email.id}) }}">show</a>
+                    <a class="btn btn-info" href="{{ path('emails_edit', {'id': email.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary"href="{{ path('emails_new') }}">Create new</a>
+					</div>
+				</div>
+			</div>
+		</main>
+    
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Hello EmailLogsController!
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div
+				class="container-fluid">
+				{# <h4 class="mt-4">ADD EMAIL</h4> #}
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">Email Logs</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						<div class="table-responsive table-striped">
+							<table class="table">
+								<thead>
+									<tr class="table-warning">
+										<th scope="col">Email</th>
+										<th scope="col">Subject</th>
+										<th scope="col">Message</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for email in emails %}
+										<tr class="table-success"></tr>
+									</th>
+									<td>
+										{{email.email}}</td>
+									<td>
+										{{email.subject}}</td>
+									<td>
+										{{email.message | raw}}</td>
+									<td></td>
+								</tbody>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</main>{% endblock %}

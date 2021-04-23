@@ -1,0 +1,46 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}View Email
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div
+				class="container-fluid">
+				{# <h4 class="mt-4">ADD EMAIL</h4> #}
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">View Email</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>Subject</th>
+									<td>{{ mail_entity.subject  | raw }}</td>
+								</tr>
+								<tr>
+									<th>Email</th>
+									<td>{{ mail_entity.email | raw }}</td>
+								</tr>
+									<tr>
+									<th>Message</th>
+									<td>{{ mail_entity.message | raw }}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						{# <a href="{{ path('mail_entity_index') }}">back to list</a>
+
+						<a href="{{ path('mail_entity_edit', {'id': mail_entity.id}) }}">edit</a> #}
+						</div>
+				</div>
+			</div>
+		</main>
+
+
+	{% endblock %}

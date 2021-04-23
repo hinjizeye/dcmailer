@@ -1,0 +1,52 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Emails sent to a single recipient{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div
+				class="container-fluid">
+				{# <h4 class="mt-4">ADD EMAIL</h4> #}
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">View  Emails</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Subject</th>
+									<th>Email</th>
+									<th>actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for mail_entity in mail_entities %}
+									<tr>
+										<td>{{ mail_entity.subject }}</td>
+										<td>{{ mail_entity.email }}</td>
+										<td>
+											<a class="btn btn-success" href="{{ path('mail_entity_show', {'id': mail_entity.id}) }}">View</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="5">No email found</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+						<a class="btn btn-success" href="{{ path('mail_entity_new') }}">Send New Mail</a>
+					</div>
+				</div>
+			</div>
+		</main>
+
+
+	{% endblock %}

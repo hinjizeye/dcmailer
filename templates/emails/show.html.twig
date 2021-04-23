@@ -1,0 +1,37 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Emails
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid">
+				{# <h4 class="mt-4">ADD EMAIL</h4> #}
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">Email list</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						<table class="table">
+							<tbody>
+								<tr>
+									<th>Email</th>
+									<td>{{ email.email }}</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<a class="btn btn-success" href="{{ path('emails_index') }}">Show List</a>
+                        <hr>
+						{# <a class="btn btn-info" href="{{ path('emails_edit', {'id': email.id}) }}">edit</a> #}
+
+						{{ include('emails/_delete_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}

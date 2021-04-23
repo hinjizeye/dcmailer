@@ -1,0 +1,50 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}Emails sent to multiple recipients 
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div
+				class="container-fluid">
+				{# <h4 class="mt-4">ADD EMAIL</h4> #}
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">Batch Email Logs</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Subject</th>
+									<th>actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for batch_email in batch_emails %}
+									<tr>
+										<td>{{ batch_email.subject | raw }}</td>
+										<td>
+											<a class="btn btn-primary" href="{{ path('batch_email_show', {'id': batch_email.id}) }}">View</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">No Email found</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+						<a class="btn btn-primary" href="{{ path('batch_email_new') }}">Send New Mail</a>
+					</div>
+				</div>
+			</div>
+		</main>
+
+
+	{% endblock %}

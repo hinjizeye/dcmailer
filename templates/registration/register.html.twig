@@ -1,0 +1,48 @@
+{% extends 'form.html.twig' %}
+
+{% block title %}Create an Account
+{% endblock %}
+
+{% block body %}
+		<main>
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-5">
+					<div class="card shadow-lg border-0 rounded-lg mt-5">
+						<div class="card-header">
+							<h3 class="text-center font-weight-light my-4"><img src="{{asset('Icons/dotcom-logo-1389x352.png')}} " width="200" class="img-fluid"/></h3>
+						</div>
+						<div class="card-body">
+							<form method="post">
+							{% for flashError in app.flashes('verify_email_error') %}
+								<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+							{% endfor %}
+							{{ form_start(registrationForm) }}
+                            <div class="card-footer text-center">
+							{{ form_row(registrationForm.email) }}
+                            </div>
+                           	<div class="card-footer text-center">
+							{{ form_row(registrationForm.Department) }}
+                            </div>
+                            <div class="card-footer text-center">
+							{{ form_row(registrationForm.plainPassword, {
+                                label: 'Password'
+                            }) }}
+                            </div>
+                            <div class="card-footer text-center">
+							{{ form_row(registrationForm.agreeTerms) }}
+                            </div>
+                            	<div class="card-footer text-center">
+									<button class="btn btn-lg btn-primary" type="submit">
+										Register
+									</button>
+								</div>
+							{{ form_end(registrationForm) }}
+						</div>
+                        </form>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+{% endblock %}

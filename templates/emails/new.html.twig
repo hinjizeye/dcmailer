@@ -1,0 +1,26 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block title %}New Email
+{% endblock %}
+
+{% block body %}
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid">
+				<h4 class="mt-4">ADD EMAIL</h4>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a href="index.html">Dashboard</a>
+					</li>
+					<li class="breadcrumb-item active">Add email</li>
+				</ol>
+				<div class="card mb-4">
+					<div class="card-body">
+						{{ include('emails/_form.html.twig') }}
+                        <hr>
+                        <a class="btn btn-info" href="{{ path('emails_index') }}" role="button">View Email Addresses</a>
+					</div>
+				</div>
+			</div>
+		</main>
+	{% endblock %}
