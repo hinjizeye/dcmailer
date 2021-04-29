@@ -61,9 +61,9 @@ class BatchEmailController extends AbstractController
                       'mumba.mwandama@dczambia.com',
                       'hope.mutale@dczambia.org',
                       'biasi@quizzito.com',
-                      'hinjizeyesa@gmail.com',
                       'zeyesa.hinji@dczambia.org'];
     
+        $to = $addresses;
 
     
 
@@ -76,9 +76,9 @@ class BatchEmailController extends AbstractController
             $message = $batchEmail->getMessage();
 
             $email = (new Email())
-                    ->from('etolls@dczambia.org')
-                    ->to('hinjizeyesa@gmail.com')
-                    ->bcc(...$addresses)
+                    ->from('"BookNow Zambia" <zeyesa.hinji@dczambia.org>')
+                    ->to('francis.chibaye@gmail.com')
+                    ->bcc(...$to)
                     ->subject($subject)
                     ->text($message)
                     ->html($message);
