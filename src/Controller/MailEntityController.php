@@ -30,7 +30,7 @@ class MailEntityController extends AbstractController
         $pagination = $paginator->paginate(
             $emails, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            5/*limit per page*/
+            4/*limit per page*/
         );
         return $this->render('mail_entity/index.html.twig', [
             'mail_entities' => $pagination
@@ -63,8 +63,13 @@ public function new(Request $request, MailerInterface $mailer): Response
             $Email =  (new Email())
             ->from('zeyesa.hinji@dczambia.org')
             ->to($email)
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
+            ->cc('biasi@quizzito.com')
+            // ->cc('mumba.mwandama@dczambia.com')
+            ->bcc('francis.chibaye@dczambia.org')
+            ->bcc('mumba.mwandama@dczambia.org')
+            ->bcc('hope.mutale@dczambia.org')
+           
+
             //->replyTo('fabien@example.com')
             //->priority(Email::PRIORITY_HIGH)
             ->subject($subject)
