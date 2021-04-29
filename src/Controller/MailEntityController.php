@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-
 use App\Entity\MailEntity;
 use App\Entity\Emails;
 use App\Form\MailEntityType;
@@ -10,11 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mailer\Mailer;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Mime\Address;
-
+use Symfony\Component\Mailer\Swift_Mailer;
 
 /**
  * @Route("/mail/entity")
@@ -24,10 +22,18 @@ class MailEntityController extends AbstractController
     /**
      * @Route("/", name="mail_entity_index", methods={"GET"})
      */
-    public function index(MailEntityRepository $mailEntityRepository): Response
+    public function index(Request $request, MailEntityRepository $mailEntityRepository, PaginatorInterface $paginator): Response
     {
+        $emailRepository = $this->getDoctrine()->getRepository(MailEntity::class);
+        $emails = $emailRepository -> findAll();
+
+        $pagination = $paginator->paginate(
+            $emails, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
         return $this->render('mail_entity/index.html.twig', [
-            'mail_entities' => $mailEntityRepository->findAll(),
+            'mail_entities' => $pagination
         ]);
     }
 
@@ -52,23 +58,23 @@ public function new(Request $request, MailerInterface $mailer): Response
             $message = $mailEntity->getMessage();
             $email = $mailEntity->getEmail();
 
+            
+        
+            $Email =  (new Email())
+            ->from('zeyesa.hinji@dczambia.org')
+            ->to($email)
+            //->cc('cc@example.com')
+            //->bcc('bcc@example.com')
+            //->replyTo('fabien@example.com')
+            //->priority(Email::PRIORITY_HIGH)
+            ->subject($subject)
+            ->text($message)
+            ->html($message);
 
-             
-             $email = (new Email())
-                    ->from('"Book now Zambia" <etolls@dczambia.org>')
-                    ->to($email)
-                    ->cc('cc@gmail.com')
-                    //->bcc('bcc@example.com')
-                    //->replyTo('fabien@example.com')
-                    //->priority(Email::PRIORITY_HIGH)
-                    ->subject($subject)
-                    ->text($message)
-                    ->html($message);
+        $mailer->send($Email);
         
-                $mailer->send($email);
-        
-                // ...
-                return $this->redirectToRoute('mail_entity_index');
+    
+         return $this->redirectToRoute('mail_entity_index');
         }
 
         return $this->render('mail_entity/new.html.twig', [

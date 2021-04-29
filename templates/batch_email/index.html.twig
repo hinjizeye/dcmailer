@@ -15,6 +15,11 @@
 					</li>
 					<li class="breadcrumb-item active">Batch Email Logs</li>
 				</ol>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a class="btn btn-primary" href="{{ path('batch_email_new') }}">Send New Mail</a>
+					</li>
+				</ol>
 				<div class="card mb-4">
 					<div class="card-body">
 						<table class="table">
@@ -39,8 +44,13 @@
 								{% endfor %}
 							</tbody>
 						</table>
+						<div class="row">
+							<div class="col-sm-12">
 
-						<a class="btn btn-primary" href="{{ path('batch_email_new') }}">Send New Mail</a>
+								<h2>{{ knp_pagination_render(batch_emails) }}</h2>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>

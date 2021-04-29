@@ -1,6 +1,7 @@
 {% extends 'dashboard.html.twig' %}
 
-{% block title %}Emails sent to a single recipient{% endblock %}
+{% block title %}Emails sent to a single recipient
+{% endblock %}
 
 {% block body %}
 	<div id="layoutSidenav_content">
@@ -13,6 +14,11 @@
 						<a href="index.html">Dashboard</a>
 					</li>
 					<li class="breadcrumb-item active">View  Emails</li>
+				</ol>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item">
+						<a class="btn btn-success" href="{{ path('mail_entity_new') }}">Send New Mail</a>
+					</li>
 				</ol>
 				<div class="card mb-4">
 					<div class="card-body">
@@ -41,8 +47,12 @@
 								{% endfor %}
 							</tbody>
 						</table>
+						<div class="row">
+							<div class="col-sm-12">
 
-						<a class="btn btn-success" href="{{ path('mail_entity_new') }}">Send New Mail</a>
+								<h2>{{ knp_pagination_render(mail_entities) }}</h2>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
